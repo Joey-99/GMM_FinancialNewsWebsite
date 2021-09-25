@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GMM财经新闻热点</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/static/layui/css/layui.css"  media="all">
+     <script src="/static/js/jquery-2.1.1.min.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=3.0&ak=NKd7O6m5MEnCzs2qVIWnS0hMcp8ts36C"></script>
+	<title>添加3D控件</title>
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style></style>
+    <style>
+            #contact-area {
+        padding: 110px 0 120px;
+    }
+
+    .contact-box {
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 50px 50px 35px;
+        background-color: #fff;
+        border-radius: 6px;
+    }
+
+    .contact-box input {
+        height: 50px;
+        border: 1px solid #f7f6f5;
+        font-size: 15px;
+        background-color: #f7f6f5;
+        font-weight: 500
+    }
+
+    .contact-box textarea {
+        border: 1px solid #f7f6f5;
+        padding-top: 10px;
+        background-color: #f7f6f5;
+        font-size: 15px;
+        font-weight: 500
+    }
+
+    .contact-box button {
+        background-color: #325eff;
+        border: 0;
+        color: #fff;
+        padding: 10px 30px;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: 0;
+        font-weight: 500;
+        font-size: 15px
+    }
+
+    .contact-box button:hover {
+        background-color: #0f39cf;
+    }
+        body{
+    background: burlywood;
+}
+
+        .form{background: rgba(255,255,255,0.2);width:400px;margin:120px auto;}
+        /*阴影*/
+        .fa{display: inline-block;top: 27px;left: 6px;position: relative;color: #ccc;}
+        input[type="text"],input[type="password"]{padding-left:26px;}
+        .checkbox{padding-left:21px;}
+
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header navbar-fixed" >
+    <div class="layui-logo">GMM财经新闻热点捕捉</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+        {% if request.session.login_in == True %}
+        <li class="layui-nav-item"><a href="">{{ request.session.identity }}</a></li>
+        <li class="layui-nav-item"><a href="{% url 'personal' %}">{{ request.session.name }}</a></li>
+        <li class="layui-nav-item"><a href="{% url 'logout' %}">退出</a></li>
+        {% else %}
+        <li class="layui-nav-item"><a href="{% url 'login' %}">登陆</a></li>
+        <li class="layui-nav-item"><a href="{% url 'register' %}">注册</a></li>
+        {% endif %}
+    </ul>
+  </div>
+    <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+
+                <li class="layui-nav-item"><a href="{%  url 'all_news' %}">全部新闻</a></li>
+                <li class="layui-nav-item"><a href="{%  url 'date'  %}">日期分类</a></li>
+                <li class="layui-nav-item"><a href="{%  url 'get_news' %}">数据爬取</a></li>
+                <li class="layui-nav-item"><a href="{%  url 'nowdata' %}">今日新闻</a></li>
+                <li class="layui-nav-item"><a href="{%  url 'nowhot' %}">今日热点</a></li>
+                <li class="layui-nav-item"><a href="{% url 'fenxi' %}">图表分析</a></li>
+              <li class="layui-nav-item"><a href="{% url 'personal' %}">个人信息</a></li>
+            </ul>
+            </div>
+        </div>
+</div>
+<div style="padding-left: 12%;padding-top: 2%">
+{% block content %}
+{% endblock %}
+</div>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+    <table class="layui-table">
+    <thead>
+    <tr>
+        <th>日期</th>
+        <th>访问</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%  for i in date %}
+        <tr>
+        <td>{{  i.date }}</td>
+        <td><a href="{%  url 'datekind' i.id %}" class="layui-btn layui-btn-primary">确定</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{%  endblock %}

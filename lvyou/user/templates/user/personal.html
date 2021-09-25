@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content  %}
+    <div class="container">
+        <form action="{% url 'personal' %}" method="post">
+        <div class="form row">
+            {% csrf_token %}
+            <div class="form-horizontal col-md-offset-3" id="login_form">
+                <h3 class="form-title">个人信息修改</h3>
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <i class="fa fa-user fa-lg"></i>
+                        <input class="form-control required" value="{{ personal.username }}" type="text" placeholder="请输入用户名" id="username" name="username" autofocus="autofocus" maxlength="20"/>
+                    </div>
+                    <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" value="{{ personal.password }}" type="password" placeholder="请输入密码" id="password" name="password" maxlength="8"/>
+                    </div>
+                    <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" type="password" placeholder="请输入密码" id="password" name="password1" maxlength="8"/>
+                    </div>
+                    <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" value="{{ personal.phone }}" type="text" placeholder="请输入手机号码" id="phone" name="phone" maxlength="20"/>
+                    </div>
+                    <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" value="{{ personal.name }}" type="text" placeholder="请输入姓名" id="phone" name="name" maxlength="20"/>
+                    </div>
+                    <div class="form-group">
+                            <i class="fa fa-lock fa-lg"></i>
+                            <input class="form-control required" type="text" value="{{ personal.address }}" placeholder="请输入地址" id="phone" name="address" maxlength="20"/>
+                    </div>
+                    <div class="form-group col-md-offset-9">
+                        <button type="submit" class="btn btn-success pull-right" name="submit">修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+{% endblock %}
